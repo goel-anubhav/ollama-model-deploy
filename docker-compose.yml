@@ -1,0 +1,31 @@
+services:
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./ollama_data:/root/.ollama
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
+    gpus: all
+    environment:
+      - OLLAMA_USE_GPU=1
+    restart: always
+
+  api:
+    build: .
+    container_name: fastapi
+    depends_on:
+      - ollama
+    environment:
+      - OLLAMA_HOST=ollama
+      - OLLAMA_MODEL=gpt-oss:20b
+    ports:
+      - "8000:8000"
+    restart: always
