@@ -7,7 +7,7 @@ from datetime import datetime
 import sseclient  # You'll need to install this: pip install sseclient-py
 
 # === Configuration ===
-API_BASE_URL = "http://34.14.209.200:8000"
+API_BASE_URL = "http://34.83.223.15:8000"
 
 # === Page Configuration ===
 st.set_page_config(

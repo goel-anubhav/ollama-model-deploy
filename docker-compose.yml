@@ -15,7 +15,7 @@ services:
               capabilities: [gpu]
     gpus: all
     environment:
-      - OLLAMA_USE_GPU=1
+      - OLLAMA_USE_GPU=1,2
     restart: always
 
   api:
@@ -25,7 +25,7 @@ services:
       - ollama
     environment:
       - OLLAMA_HOST=ollama
-      - OLLAMA_MODEL=gpt-oss:20b
+      - OLLAMA_MODEL=gpt-oss:120b
     ports:
       - "8000:8000"
     restart: always
